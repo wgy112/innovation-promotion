@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.sdu.mapper.SduCommentNoticeMapper">
+    <select id="getNoticebyName" parameterType="string" resultType= "org.jeecg.modules.sdu.entity.SduCommentNotice">
+        SELECT * FROM sdu_comment_notice WHERE SOLUTIONUSERNAME = #{name} AND STATE !=0 AND USERNAME != SOLUTIONUSERNAME
+    </select>
+
+    <select id="demandGetNoticebyName" parameterType="string" resultType= "org.jeecg.modules.sdu.entity.SduCommentNotice">
+        SELECT * FROM sdu_comment_notice WHERE PARENTMSGUSER = #{name} AND   DEMANDREADSTATE !=0
+    </select>
+</mapper>

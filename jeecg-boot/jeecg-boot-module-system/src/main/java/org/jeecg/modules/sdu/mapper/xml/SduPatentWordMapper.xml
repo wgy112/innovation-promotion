@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.sdu.mapper.SduPatentWordMapper">
+
+    <select id="findByKeyword" parameterType="String" resultType="org.jeecg.modules.sdu.entity.SduPatentWord">
+        SELECT * FROM sdu_patent_word WHERE KEYWORD = #{keyword}
+    </select>
+
+</mapper>

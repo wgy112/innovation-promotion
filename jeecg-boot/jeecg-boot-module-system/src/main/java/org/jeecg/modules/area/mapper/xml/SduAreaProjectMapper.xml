@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.area.mapper.SduAreaProjectMapper">
+    <select id="findProjectListLike" resultType="org.jeecg.modules.area.entity.SduAreaProject">
+        SELECT * FROM sdu_area_project
+        <where>
+            <if test="keyword != null and keyword != ''">
+                p_name like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="startDate != null and startDate != ''">
+                and p_createtime <![CDATA[>=]]> #{startDate}
+            </if>
+            <if test="endDate != null and endDate != ''">
+                and p_createtime <![CDATA[<=]]>  #{endDate}
+            </if>
+            <if test="checkedList!= null">
+                and p_area in
+                <foreach collection="checkedList" item="checkedItem" separator="," open="(" close=")">
+                    #{checkedItem}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="findCompanyListLike" resultType="org.jeecg.modules.area.entity.SduAreaProject">
+        SELECT * FROM sdu_area_project
+        <where>
+            <if test="keyword != null and keyword != ''">
+                c_name like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="startDate != null and startDate != ''">
+                and p_createtime <![CDATA[>=]]> #{startDate}
+            </if>
+            <if test="endDate != null and endDate != ''">
+                and p_createtime <![CDATA[<=]]>  #{endDate}
+            </if>
+            <if test="checkedList!= null">
+                and p_area in
+                <foreach collection="checkedList" item="checkedItem" separator="," open="(" close=")">
+                    #{checkedItem}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="findAllCompany" resultType="String">
+        SELECT DISTINCT c_name FROM sdu_area_project
+    </select>
+</mapper>

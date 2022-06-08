@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.sdu.mapper.SduMessageNoticeMapper">
+    <select id="messagePostByUser" parameterType="string" resultType= "org.jeecg.modules.sdu.entity.SduMessageNotice">
+        SELECT * FROM sdu_message_notice WHERE DEMANDUSER = #{demanduser} AND READSTATE !=2
+        AND ORDERSTATE !=2
+    </select>
+<!--    <select id="setReadState" parameterType="string" resultType= "org.jeecg.modules.sdu.entity.SduMessageNotice">-->
+<!--        UPDATE sdu_message_notice SET readState=0 WHERE ID = #{id}-->
+<!--    </select>-->
+
+    <select id="messagePostByServiceUser" parameterType="string" resultType= "org.jeecg.modules.sdu.entity.SduMessageNotice">
+        SELECT * FROM sdu_message_notice WHERE USER = #{user} AND SERVICESTATE !=2 AND ORDERSTATE !=3
+    </select>
+</mapper>

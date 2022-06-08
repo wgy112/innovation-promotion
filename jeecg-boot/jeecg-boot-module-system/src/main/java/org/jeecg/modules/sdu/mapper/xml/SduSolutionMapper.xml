@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.sdu.mapper.SduSolutionMapper">
+    <select id="findSolutionByClassify" parameterType="int" resultType="org.jeecg.modules.sdu.entity.SduSolution">
+         SELECT * FROM sdu_solution_no WHERE classify = #{classify} AND status != 0
+    </select>
+
+    <select id="findSolutionByUser" parameterType="String" resultType="org.jeecg.modules.sdu.entity.SduSolution">
+        SELECT * FROM sdu_solution_no WHERE USER = #{user} AND status != 0
+    </select>
+    <select id="findSolutionListLike" parameterType="String" resultType="org.jeecg.modules.sdu.entity.SduSolution">
+        SELECT * FROM sdu_solution_no
+        <where>
+            <if test="classify != null and classify != ''">
+                classify = #{classify} AND status != 0
+            </if>
+            <if test="searchName != null and searchName != ''">
+                and NAME like CONCAT('%',#{searchName,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getLatestSolution" resultType="org.jeecg.modules.sdu.entity.SduSolution">
+        SELECT * FROM sdu_solution_no WHERE status != 0 ORDER BY date DESC LIMIT 6
+    </select>
+</mapper>

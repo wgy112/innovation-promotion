@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.sdu.mapper.SduEnterpriseOrderMapper">
+    <select id="queryEnterpriseOrderByUser"  resultType= "org.jeecg.modules.sdu.entity.SduEnterpriseOrder">
+        SELECT * FROM sdu_enterprise_order WHERE duser_name = #{duserName} AND order_delete =1
+    </select>
+
+    <select id="queryOrderByServiceUser"  resultType= "org.jeecg.modules.sdu.entity.SduEnterpriseOrder">
+        SELECT * FROM sdu_enterprise_order WHERE suser_name = #{suserName} AND order_delete =1
+    </select>
+    <select id="queryOrderByThreeName"  resultType= "org.jeecg.modules.sdu.entity.SduEnterpriseOrder">
+        SELECT * FROM sdu_enterprise_order WHERE suser_name = #{suserName}
+                                             AND order_delete =1
+                                            AND duser_name=#{duserName}
+                                            AND solution_name = #{solutionName}
+
+
+    </select>
+
+</mapper>

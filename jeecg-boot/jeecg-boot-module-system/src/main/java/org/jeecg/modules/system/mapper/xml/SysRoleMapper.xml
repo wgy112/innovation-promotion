@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.system.mapper.SysRoleMapper">
+
+<!--    <select id="findRoleByUserName"  resultType= "org.jeecg.modules.system.entity.SysRole">-->
+<!--           SELECT *-->
+<!--           FROM (sys_role LEFT JOIN sys_user_role  ON sys_role.id=sys_user_role.role_id)-->
+<!--           LEFT JOIN sys_user ON sys_user.id=sys_user_role.user_id-->
+<!--           WHERE sys_user.username=#{username}-->
+<!--&#45;&#45;         SELECT *-->
+<!--&#45;&#45;         FROM sys_role,sys_user_role,sys_user-->
+<!--&#45;&#45;         WHERE sys_role.id=sys_user_role.id-->
+<!--&#45;&#45;         AND sys_user_role.id=sys_user.id-->
+<!--&#45;&#45;         AND sys_user.username=#{username}-->
+<!--    </select>-->
+
+    <select id="findRoleByUserName"  resultType="string">
+        SELECT r.role_name
+        FROM sys_role r,sys_user_role ur,sys_user u
+        WHERE r.id=ur.role_id
+        AND ur.user_id=u.id
+        AND u.username=#{username}
+
+    </select>
+
+<!--    <select id="findByCid" parameterType="Integer" resultType= "org.jeecg.modules.sdu.entity.SduCreative">-->
+<!--        SELECT * FROM sdu_creative WHERE classify = #{cid} and deletestate=0-->
+<!--    </select>-->
+<!--    <select id="findById" parameterType="Integer" resultType= "org.jeecg.modules.sdu.entity.SduCreative">-->
+<!--        SELECT * FROM sdu_creative WHERE ID = #{id} and deletestate=0-->
+<!--    </select>-->
+<!--    <update id="demandDelete" parameterType="Integer" >-->
+<!--        UPDATE sdu_creative SET deletestate = 1 WHERE ID = #{id}-->
+<!--    </update>-->
+</mapper>
